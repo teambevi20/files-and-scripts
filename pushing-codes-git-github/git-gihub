@@ -1,0 +1,68 @@
+Author: Vin Lonje
+
+GitHub Account 
+==============
+Creating PAT Key
+- Login to your Github account and go to Settings 
+- From Settings --> Developer Settings --> Personal assess tokens 
+- Then generate your new token 
+
+Git Terminal 
+============
+- In your terminal: 
+  - Install git by running the <sudo yum install git -y> command 
+  - Make a directory and cd to it by running the <mkdir name> command 
+ 
+- Get your Credentials  
+  - git config --global user.email "you@example.com" = add your email  
+  - git config --global user.name "Your Name" = add your username
+
+  - git config --global --list = This will display your credentials 
+
+- Initializing and Commiting Codes 
+  - Initialized the directory you have created by running the <git init> commnad 
+  - This will create your local git repository called <.git> 
+  - Clone your project repository from the Github by running  
+    <git clone URL> 
+  - cd into the cloned repository 
+  - The cloned repository represents your Working Area 
+  - You can start creating your files. 
+  - When done creating your files and doing all your necessary edit, 
+    move the files to your Staging Area by running the following commands: 
+      - git add .        = To move all files from your current working area to the Staging Area  
+      - git add FileName = This will move the particular file you have named from your 
+                           current working area to the Staging Area
+  - Run the <git status> command to see which files you have added to your Staging Area
+  - If satisfied with your work, run the following command to send the files to the 
+    Production Area (Files in the Production Area are files ready to be pushed to GitHub) 
+    <git commit -m "commit message"
+    
+ - Pushing Committed Codes to GitHub 
+  - Add your project repository from GitHub by running the command: 
+    <git remote add aliasName URL> 
+    e.g. git remote add project1 https://github.com/team-dominion/java-web-app.git
+    - where <project1> represents your aliasName  
+    - where your aliasName will therefore represents your entire project repository URL 
+  - To check your aliasName run the <git remote -v> command 
+
+  - Create a branch by running the <git branch branchName> 
+    e.g. git branch test 
+  - Get into the newly created branch by running the command <git checkout test> 
+  - Run the command <git branch> to see the current branch you are working in
+
+  - To push the code from your Production Area (LocalRepo) to GitHub (RemoteRepo), 
+    run the command: <git push aliasName branch> 
+    e.g. git push project1 test 
+    - project1 = represents your project repository url 
+    - test = is the branch you want to push your codes to in GitHub 
+  - You will be prompted to enter your credentials 
+    - Enter your GitHub username 
+    - Enter your Personal Assess Token (PAT) where asked to provide your Password 
+      Just copy your PAT and paste there. 
+      Note that this is a secret so do not expect to see what you have pasted 
+
+GitHub Account
+============== 
+- Creating a Pull Request 
+ - In your project, got to what you just commited/pushed from your git terminal 
+ - Leave a comment for your project manager and click <Create pull request>
