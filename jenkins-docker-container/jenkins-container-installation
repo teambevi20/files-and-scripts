@@ -1,0 +1,38 @@
+# These are instructions to install Jenkins as a Docker Container 
+# Author: Vin Lonje 
+# Type of Server: Ubuntu 
+# User: Ubuntu
+
+# Update your server 
+sudo apt update -y
+
+# Install Java as a prerequisite 
+sudo apt install default-jre
+
+# Update your server 
+sudo apt update -y
+
+# docker-script.sh 
+#!/bin/bash
+sudo apt update -y
+sudo apt install docker.io -y
+sudo usermod -aG docker ubuntu
+sudo chmod 666 /var/run/docker.sock
+sudo systemctl enable docker 
+sudo systemctl start docker
+#sudo systemctl status docker
+
+# Install Jenkins as a Docker Container 
+docker run -u 0 --privileged --name jenkins -p 8080:8080 -p 50000:50000 -it -d -v /home/jenkins_home:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock -v $(which docker):/usr/bin/docker jenkins/jenkins:latest
+
+docker ps docker logs -f <container_ID> 
+
+# Get admin login to jenkins server. 
+docker exec -it <container_ID> /bin/bash 
+
+# Enter into jenkins server container and generate key pairs.
+ssh-keygen -t rsa
+
+# Get the password to open Jenkins
+cat ~/.ssh/id_rsa.pub 
+#copy and paste on linux-server ~/.ssh/authorized_keys file.
