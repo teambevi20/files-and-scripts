@@ -25,7 +25,7 @@ CREATE A NEW USER:
 - Enable user to run docker commands
   usermod -aG docker newUser
     
-- Disable password 
+- Disable password and add newUser to the Sudoers group 
   echo "newUser  ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/newUser
 
 ---------------------------------------------------------------------------------
