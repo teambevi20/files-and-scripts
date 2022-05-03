@@ -14,18 +14,6 @@
 
 - Update your server 
   apt update 
-
-- Create a sonarqube user  
-  adduser sonarqube
-  
-- Enable sonarqube to run docker commands
-  usermod -aG docker sonarqube
-    
-- Disable password 
-  echo "sonarqube  ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/sonarqube
-
-- Become sonarqube user 
-  sudo su - sonarqube 
   
 - Edit the system configuration file.
   vi /etc/sysctl.conf
@@ -58,6 +46,18 @@ sudo systemctl enable docker
 sudo systemctl start docker
 #sudo systemctl status docker
 
+- Create a sonarqube user  
+  adduser sonarqube
+  
+- Enable sonarqube to run docker commands
+  usermod -aG docker sonarqube
+    
+- Disable password and add Sonarqube to the Sudoers group 
+  echo "sonarqube  ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/sonarqube
+
+- Become sonarqube user 
+  sudo su - sonarqube 
+  
 - Download the SonarQube Docker image from the online repository.
   docker pull sonarqube
   
