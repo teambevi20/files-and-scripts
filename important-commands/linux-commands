@@ -1,6 +1,4 @@
-The procedure to change the default hostName in Ubuntu Server:
-=============================================================
-
+CHNAGE DEFAULT HOSTNAME:
 - Type the hostnamectl command:
   <sudo hostnamectl set-hostname newNameHere>
 
@@ -11,3 +9,18 @@ The procedure to change the default hostName in Ubuntu Server:
 - Replace any occurrence of the existing computer name with your new hostname.
   Reboot the system to changes take effect:
   <sudo reboot>
+  
+  CREATE A NEW USER:
+  - Become root 
+    <sudo -i>
+  - Create a new user 
+    <adduser newUser>
+  
+  - Enable user to run docker commands
+    <usermod -aG docker newUser>
+    
+  - Disable password 
+    <echo "newUser  ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/newUser
+    
+  
+  
