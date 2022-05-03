@@ -1,0 +1,117 @@
+SonarQube - Docker installation:
+=============================== 
+
+# OS = Ubuntu 
+# Author: Vin Lonje
+
+- Become root 
+  sudo -i
+
+- Update your server 
+  apt update -y
+
+- Install Java as a prerequisite 
+  apt install default-jre
+
+- Update your server 
+  apt update -y
+
+- Edit the system configuration file.
+  vi /etc/sysctl.conf
+
+- Insert the following lines at the end of this file.
+  vm.max_map_count=262144
+  fs.file-max=65536
+
+- Enable the system configuration.
+  sysctl -p
+
+- Create a configuration file named 99-sonarqube.conf.
+  vi /etc/security/limits.d/99-sonarqube.conf
+
+- Here is the file content.
+  root   -   nofile   65536
+  root   -   nproc    7610
+
+- Reboot the computer.
+  reboot
+
+- Install the Docker service.
+  apt update
+  apt install docker.io
+
+- Download the SonarQube Docker image from the online repository.
+  docker pull sonarqube
+  
+- List the Docker images installed on your system.
+  docker images
+
+- Create Docker volumes to store the SonarQube persistent data.
+  docker volume create sonarqube-conf 
+  docker volume create sonarqube-data
+  docker volume create sonarqube-logs
+  docker volume create sonarqube-extensions
+  
+- Verify the persistent data directories.
+  docker volume inspect sonarqube-conf 
+  docker volume inspect sonarqube-data
+  docker volume inspect sonarqube-logs
+  docker volume inspect sonarqube-extensions
+
+- Optionally, create symbolic links to an easier access location.
+  mkdir /sonarqube && cd /sonarqube 
+  ln -s /var/lib/docker/volumes/sonarqube-conf/_data /sonarqube/conf
+  ln -s /var/lib/docker/volumes/sonarqube-data/_data /sonarqube/data
+  ln -s /var/lib/docker/volumes/sonarqube-logs/_data /sonarqube/logs
+  ln -s /var/lib/docker/volumes/sonarqube-extensions/_data /sonarqube/extensions
+
+- cd back to root 
+  cd
+  
+- Start a SonarQube container with persistent data storage.
+  docker run -d --name sonarqube -p 9000:9000 -p 9092:9092 -v sonarqube-conf:/opt/sonarqube/conf -v sonarqube-data:/opt/sonarqube/data -v sonarqube-logs:/opt/sonarqube/logs -v sonarqube-extensions:/opt/sonarqube/extensions sonarqube
+
+- Open your browser and enter the IP address of your web server plus :9000
+  For example, the following URL was entered in the Browser:
+  http://192.168.15.10:9000
+  The SonarQube dashboard will be presented.
+  Click on the Login button and use the Sonarqube default username and password.
+      • Default Username: admin
+      • Default Password: admin
+
+- Create a sonarqube user  
+  adduser sonarqube
+  
+- Enable sonarqube to run docker commands
+  usermod -aG docker sonarqube
+    
+- Disable password 
+  echo "sonarqube  ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/sonarqube
+
+- Become sonarqube user 
+  sudo su - sonarqube 
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
