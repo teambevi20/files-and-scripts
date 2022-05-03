@@ -10,10 +10,20 @@
   apt update
 
 - Install Java as a prerequisite 
-  apt install default-jre
+  apt install default-jre -y
 
 - Update your server 
   apt update
+
+- Create a script to install Docker 
+# docker-script.sh 
+#!/bin/bash
+apt update -y
+apt install docker.io -y
+chmod 666 /var/run/docker.sock
+systemctl enable docker 
+systemctl start docker
+#systemctl status docker
 
 - Create a Jenkins user 
   adduser jenkins 
@@ -27,24 +37,20 @@
 - Become Jenkins user
   su - jenkins 
 
-- Create a script to install Docker 
-# docker-script.sh 
-#!/bin/bash
-sudo apt update -y
-sudo apt install docker.io -y
-sudo chmod 666 /var/run/docker.sock
-sudo systemctl enable docker 
-sudo systemctl start docker
-#sudo systemctl status docker
-
 - Install Jenkins as a Docker Container 
   docker run -u 0 --privileged --name jenkins -p 8080:8080 -p 50000:50000 -it -d -v /home/jenkins_home:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock -v $(which docker):/usr/bin/docker jenkins/jenkins:latest
 
-  docker ps docker logs -f <container_ID> 
-
+- Get the IP to log in to Jenkins 
+  curl ifconfig.co
+  login to Jenkins: IP/Port
+  Default port is 8080
+  
 - Get admin login to jenkins server. 
   docker exec -it <container_ID> /bin/bash 
-
+  cat /var/jenkins_home/secrets/initialAdminPassword
+  
+  
+  Another method 
 - Enter into jenkins server container and generate key pairs.
   ssh-keygen -t rsa
 
