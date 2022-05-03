@@ -7,7 +7,8 @@ CHNAGE DEFAULT HOSTNAME:
 
 - Next Edit the /etc/hosts file:
      - Delete the old name and setup new name.
-       sudo nano /etc/hosts
+       nano /etc/hosts
+       (For windows: Ctrl + X to exit | For Mac: Cmd + X to exit)
 
 - Replace any occurrence of the existing computer name with your new hostname.
   Reboot the system to changes take effect:
