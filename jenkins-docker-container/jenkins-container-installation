@@ -31,7 +31,7 @@ systemctl start docker
 - Enable Jenkins to use Docker commands 
   usermod -aG docker ubuntu
 
-- Disable password for Jenkins 
+- Disable password and add Jenkins to the Sudoers group 
   echo "jenkins  ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/jenkins
   
 - Become Jenkins user
