@@ -10,17 +10,26 @@ CHNAGE DEFAULT HOSTNAME:
   Reboot the system to changes take effect:
   <sudo reboot>
   
-  CREATE A NEW USER:
-  - Become root 
-    <sudo -i>
-  - Create a new user 
-    <adduser newUser>
+CREATE A NEW USER:
+- Become root 
+  <sudo -i>
+- Create a new user 
+  <adduser newUser>
   
-  - Enable user to run docker commands
-    <usermod -aG docker newUser>
+- Enable user to run docker commands
+  <usermod -aG docker newUser>
     
-  - Disable password 
-    <echo "newUser  ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/newUser
+- Disable password 
+  <echo "newUser  ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/newUser
+
+CHANGE DOCKER CONTAINER PASSWORD
+- Run this command to get inside the container 
+  <docker exec -u 0 -it <MyContainer> bash>
+  
+- Set the password
+  <passwd>
+  Enter new UNIX password: 
+  Retype new UNIX password:
     
   
   
