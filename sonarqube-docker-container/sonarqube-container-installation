@@ -1,21 +1,32 @@
-SonarQube - Docker installation:
-=============================== 
-
-# OS = Ubuntu 
-# Author: Vin Lonje
+# These are instructions to install Sonarqube as a Docker Container 
+# Author: Vin Lonje 
+# Type of Server: Ubuntu 
+# User: sonarqube
 
 - Become root 
   sudo -i
 
 - Update your server 
-  apt update -y
+  apt update 
 
 - Install Java as a prerequisite 
   apt install default-jre
 
 - Update your server 
-  apt update -y
+  apt update 
 
+- Create a sonarqube user  
+  adduser sonarqube
+  
+- Enable sonarqube to run docker commands
+  usermod -aG docker sonarqube
+    
+- Disable password 
+  echo "sonarqube  ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/sonarqube
+
+- Become sonarqube user 
+  sudo su - sonarqube 
+  
 - Edit the system configuration file.
   vi /etc/sysctl.conf
 
@@ -37,8 +48,15 @@ SonarQube - Docker installation:
   reboot
 
 - Install the Docker service.
-  apt update
-  apt install docker.io
+  # Create a script to install Docker 
+# docker-script.sh 
+#!/bin/bash
+sudo apt update -y
+sudo apt install docker.io -y
+sudo chmod 666 /var/run/docker.sock
+sudo systemctl enable docker 
+sudo systemctl start docker
+#sudo systemctl status docker
 
 - Download the SonarQube Docker image from the online repository.
   docker pull sonarqube
@@ -79,17 +97,7 @@ SonarQube - Docker installation:
       • Default Username: admin
       • Default Password: admin
 
-- Create a sonarqube user  
-  adduser sonarqube
-  
-- Enable sonarqube to run docker commands
-  usermod -aG docker sonarqube
-    
-- Disable password 
-  echo "sonarqube  ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/sonarqube
 
-- Become sonarqube user 
-  sudo su - sonarqube 
   
 
 
