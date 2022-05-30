@@ -46,7 +46,7 @@ systemctl start docker
   Default port is 8080
   
 - Get admin login to jenkins server. 
-  docker exec -it <container_ID> /bin/bash 
+  docker exec -it jenkins /bin/bash 
   cat /var/jenkins_home/secrets/initialAdminPassword
   
   
