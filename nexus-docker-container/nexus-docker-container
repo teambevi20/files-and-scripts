@@ -39,10 +39,8 @@ Install docker engine:
 
 - Install nexus  
   docker pull sonatype/nexus3
-  docker run -d -p 8081:8081 --name nexus sonatype/nexus3
-  #systemctl enable nexus  
-  #systemctl start nexus   
-  #systemctl status nexus   
+  docker volume create --name nexus-data
+  docker run -d -p 8081:8081 --name nexus -v nexus-data:/nexus-data sonatype/nexus3   
 
 - Check on browser  
   curl ifconfig.co 
@@ -51,6 +49,6 @@ Install docker engine:
   # Default user is admin 
   # Default password 
     - Get into the nexus container  
-      docker exec -it containerID or containerName /bin/bash  
+      docker exec -it nexus /bin/bash  
     - Get the password 
-      cat admin.password
+      cat /nexus-data/admin.password
