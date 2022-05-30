@@ -1,0 +1,56 @@
+To run nexus as a container:
+- docker engine must be running 
+- java must be running   
+
+Install docker engine: 
+- Become root
+  sudo -i
+  
+- Update your server 
+  apt update
+
+- Upgrade your server packages 
+  apt upgrade
+
+- Install Java as a prerequisite 
+  apt install default-jre -y
+
+- Update your server 
+  apt update
+
+- Install Docker   
+  apt install docker.io -y
+  chmod 666 /var/run/docker.sock
+  systemctl enable docker 
+  systemctl start docker
+  #systemctl status docker
+
+- Create a nexus user  
+  adduser nexus  
+
+- Add nexus to the docker group 
+  usermod -aG docker nexus  
+
+- Allow the nexus user to run all commands with sudo without password.
+  echo "nexus   ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers.d/nexus
+
+- Become nexus user  
+  su - nexus  
+
+- Install nexus  
+  docker pull sonatype/nexus3
+  docker run -d -p 8081:8081 --name nexus sonatype/nexus3
+  systemctl enable nexus  
+  systemctl start nexus   
+  #systemctl status nexus   
+
+- Check on browser  
+  curl ifconfig.co 
+  #IP/port 
+  # Default port is 8081 
+  # Default user is admin 
+  # Default password 
+    - Get into the nexus container  
+      docker exec -t containerID or containerName /bin/bash  
+    - Get the password 
+      cat admin.password
