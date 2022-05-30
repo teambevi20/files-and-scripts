@@ -40,8 +40,8 @@ Install docker engine:
 - Install nexus  
   docker pull sonatype/nexus3
   docker run -d -p 8081:8081 --name nexus sonatype/nexus3
-  systemctl enable nexus  
-  systemctl start nexus   
+  #systemctl enable nexus  
+  #systemctl start nexus   
   #systemctl status nexus   
 
 - Check on browser  
