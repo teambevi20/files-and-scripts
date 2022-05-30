@@ -51,6 +51,6 @@ Install docker engine:
   # Default user is admin 
   # Default password 
     - Get into the nexus container  
-      docker exec -t containerID or containerName /bin/bash  
+      docker exec -it containerID or containerName /bin/bash  
     - Get the password 
       cat admin.password
