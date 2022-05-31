@@ -9,11 +9,11 @@
 - Update your server 
   apt update 
 
+- Upgrade your server packages 
+  apt upgrade
+  
 - Install Java as a prerequisite 
   apt install default-jre
-
-- Update your server 
-  apt update 
   
 - Edit the system configuration file.
   vi /etc/sysctl.conf
@@ -69,13 +69,7 @@ sudo systemctl start docker
   docker volume create sonarqube-data
   docker volume create sonarqube-logs
   docker volume create sonarqube-extensions
-  
-- Verify the persistent data directories.
-  docker volume inspect sonarqube-conf 
-  docker volume inspect sonarqube-data
-  docker volume inspect sonarqube-logs
-  docker volume inspect sonarqube-extensions
-  
+    
 - Start a SonarQube container with persistent data storage.
   docker run -d --name sonarqube -p 9000:9000 -p 9092:9092 -v sonarqube-conf:/opt/sonarqube/conf -v sonarqube-data:/opt/sonarqube/data -v sonarqube-logs:/opt/sonarqube/logs -v sonarqube-extensions:/opt/sonarqube/extensions sonarqube
 
