@@ -80,30 +80,3 @@ sudo systemctl start docker
   Click on the Login button and use the Sonarqube default username and password.
       • Default Username: admin
       • Default Password: admin
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
