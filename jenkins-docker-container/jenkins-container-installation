@@ -8,12 +8,12 @@
   
 - Update your server 
   apt update
+  
+- Upgrade your server packages 
+  apt upgrade
 
 - Install Java as a prerequisite 
   apt install default-jre -y
-
-- Update your server 
-  apt update
 
 - Create a script to install Docker 
 # docker-script.sh 
