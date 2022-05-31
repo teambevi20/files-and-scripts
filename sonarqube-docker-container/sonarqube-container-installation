@@ -10,7 +10,7 @@
   apt update 
 
 - Upgrade your server packages 
-  apt upgrade
+  apt upgrade -y
   
 - Install Java as a prerequisite 
   apt install default-jre
